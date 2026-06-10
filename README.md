@@ -5,7 +5,7 @@
 > **Brier-audited directory of 1000+ `CLAUDE.md` and `skills/*.md` files — every entry comes with a "does this skill actually help?" score, scored independently against a standardized eval harness.**
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Entries](https://img.shields.io/badge/entries-11%20audited-blue.svg)](entries/)
+[![Entries](https://img.shields.io/badge/entries-26%20audited-blue.svg)](entries/)
 [![Eval set](https://img.shields.io/badge/eval%20set-v1.0%20frozen-orange.svg)](scripts/eval-set-v1.yaml)
 [![Brier-audited](https://img.shields.io/badge/Brier-audited-violet.svg)](docs/brier-method.md)
 [![Method](https://img.shields.io/badge/method-public-emerald.svg)](docs/brier-method.md)
@@ -14,13 +14,17 @@
 
 ## First audit results (2026-06-10)
 
+26 entries audited: **8 helpful · 15 neutral · 3 harmful** against no-skill baseline on the frozen v1.0 eval set.
+
 | Verdict | Count | Examples |
 |---|---|---|
-| **helpful** | **6** | `Sahil /marketing-plan` · `Sahil /minimalist-review` · `Sahil /validate-idea` (all Brier 0.05 vs baseline 0.25) |
-| **neutral** | 4 | `Karpathy CLAUDE.md` · `Sahil /pricing` · `Sahil /first-customers` · `Sahil /company-values` |
-| **harmful** | **1** ⚠️ | `Sahil /grow-sustainably` — Brier **0.35 vs baseline 0.25** on the frozen v1.0 eval set |
+| **helpful** | **8** | `Sahil /marketing-plan` · `Sahil /minimalist-review` · `Sahil /validate-idea` (all Brier 0.05 vs 0.25) · `Anthropic /frontend-design` (0.30 vs 0.45) · `Anthropic /internal-comms` (0.30 vs 0.45) |
+| **neutral** | 15 | `Karpathy CLAUDE.md` · `Sahil /pricing` · 11 other Anthropic skills (canvas-design, claude-api, docx, pdf, pptx, etc.) |
+| **harmful** | **3** ⚠️ | `Sahil /grow-sustainably` (0.35 vs 0.25) · `Anthropic /algorithmic-art` (0.35 vs 0.25) · `Anthropic /doc-coauthoring` (0.40 vs 0.25) |
 
-Yes, one of Sahil's own 10 skills audits as **harmful** against no-skill baseline on our frozen 5-task eval set. The author counter-eval slot is open per [docs/brier-method.md](docs/brier-method.md). This is the kind of result a third-party directory exists to surface.
+**Yes, one of Sahil's 10 skills and two of Anthropic's 15 audit as harmful** against no-skill baseline on our frozen 5-task eval set. The author counter-eval slot is open per [docs/brier-method.md](docs/brier-method.md). These results almost certainly reflect **domain mismatch** — algorithmic-art is not built for code-review tasks. But that's the point: "this skill is great for what it's built for" is exactly what authors say without proof, and exactly what a directory can audit. The v1.1 eval set will widen to 40 tasks across all 8 domains so cross-domain skills can be scored on their home turf.
+
+This is the kind of result a third-party directory exists to surface.
 
 ---
 

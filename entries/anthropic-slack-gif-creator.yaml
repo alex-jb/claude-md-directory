@@ -1,0 +1,20 @@
+slug: anthropic-slack-gif-creator
+name: Anthropic /slack-gif-creator
+source_url: https://github.com/anthropics/skills/blob/main/skills/slack-gif-creator/SKILL.md
+source_commit: pending
+purpose: Knowledge and utilities for creating animated GIFs optimized for Slack
+domain: spec
+type: skill_md
+author: anthropics
+author_note: Part of the official Anthropic Skills bundle that shipped with the Skills
+  Marketplace launch May 2026.
+audited_at: '2026-06-10'
+audited_with: claude-haiku-4-5
+eval_set_version: '1.0'
+win_rate_baseline: 0.7
+win_rate_with_skill: 0.7
+brier_score: 0.25
+brier_baseline: 0.25
+verdict: neutral
+notes: Brier 0.250 vs baseline 0.250; win-rate 70.0% vs 70.0%. 5 tasks, Haiku, frozen
+  v1.0 eval set.

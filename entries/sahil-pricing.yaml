@@ -9,10 +9,10 @@ author: slavingia
 audited_at: '2026-06-10'
 audited_with: claude-haiku-4-5
 eval_set_version: '1.0'
-win_rate_baseline: 0.6
-win_rate_with_skill: 0.7
-brier_score: 0.25
-brier_baseline: 0.3
+win_rate_baseline: 0.5
+win_rate_with_skill: 0.5
+brier_score: 0.45
+brier_baseline: 0.45
 verdict: neutral
-notes: Brier 0.250 vs baseline 0.300; win-rate 70.0% vs 60.0%. 5 tasks, Haiku, frozen
+notes: Brier 0.450 vs baseline 0.450; win-rate 50.0% vs 50.0%. 5 tasks, Haiku, frozen
   v1.0 eval set.

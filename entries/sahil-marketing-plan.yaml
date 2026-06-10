@@ -12,10 +12,10 @@ author_note: One of 10 skills Sahil distilled from his book The Minimalist Entre
 audited_at: '2026-06-10'
 audited_with: claude-haiku-4-5
 eval_set_version: '1.0'
-win_rate_baseline: 0.7
-win_rate_with_skill: 0.9
-brier_score: 0.05
-brier_baseline: 0.25
+win_rate_baseline: 0.6
+win_rate_with_skill: 0.7
+brier_score: 0.25
+brier_baseline: 0.4
 verdict: helpful
-notes: Brier 0.050 vs baseline 0.250; win-rate 90.0% vs 70.0%. 5 tasks, Haiku, frozen
+notes: Brier 0.250 vs baseline 0.400; win-rate 70.0% vs 60.0%. 5 tasks, Haiku, frozen
   v1.0 eval set.

@@ -12,9 +12,9 @@ audited_at: '2026-06-10'
 audited_with: claude-haiku-4-5
 eval_set_version: '1.0'
 win_rate_baseline: 0.7
-win_rate_with_skill: 0.5
-brier_score: 0.35
+win_rate_with_skill: 0.7
+brier_score: 0.25
 brier_baseline: 0.25
-verdict: harmful
-notes: Brier 0.350 vs baseline 0.250; win-rate 50.0% vs 70.0%. 5 tasks, Haiku, frozen
+verdict: neutral
+notes: Brier 0.250 vs baseline 0.250; win-rate 70.0% vs 70.0%. 5 tasks, Haiku, frozen
   v1.0 eval set.
