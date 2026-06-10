@@ -1,0 +1,89 @@
+name: Audit new entries on PR
+
+# Runs scripts/audit.py against any yaml files added/changed under entries/
+# in a pull request. Posts the Brier verdict back to the PR as a comment so
+# the contributor sees the score before merge — and so reviewers don't have
+# to run it locally.
+#
+# Required repo secret: ANTHROPIC_API_KEY
+# Cost per PR: ~$0.0005 per changed entry.
+
+on:
+  pull_request:
+    paths:
+      - "entries/*.yaml"
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install anthropic pyyaml requests
+
+      - name: Detect changed entry files
+        id: changed
+        run: |
+          # Diff against the merge base for true PR changeset
+          git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...HEAD \
+            -- 'entries/*.yaml' \
+            | grep -v '_template\.yaml' \
+            > /tmp/changed.txt || true
+          echo "list<<EOF" >> $GITHUB_OUTPUT
+          cat /tmp/changed.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          if [ ! -s /tmp/changed.txt ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run audit on each changed entry
+        if: steps.changed.outputs.skip != 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          mkdir -p /tmp/audit-out
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            echo "::group::Audit $f"
+            python scripts/audit.py "$f" 2>&1 | tee /tmp/audit-out/"$(basename $f).log"
+            echo "::endgroup::"
+          done < /tmp/changed.txt
+
+      - name: Summarize results into PR comment
+        if: steps.changed.outputs.skip != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const dir = '/tmp/audit-out';
+            const files = fs.readdirSync(dir).filter(f => f.endsWith('.log'));
+            const lines = ['## 🛠 Brier audit results', ''];
+            for (const file of files) {
+              const log = fs.readFileSync(path.join(dir, file), 'utf8');
+              const verdict = (log.match(/→ verdict: (\w+)/) || [,'unknown'])[1];
+              const brier = (log.match(/brier ([\d.]+)/) || [,'?'])[1];
+              const base = (log.match(/baseline ([\d.]+)/) || [,'?'])[1];
+              const emoji = { helpful: '✅', neutral: '⚪', harmful: '⚠️' }[verdict] || '❓';
+              lines.push(`- ${emoji} **${file.replace('.yaml.log','')}** — ${verdict} (Brier ${brier} vs baseline ${base})`);
+            }
+            lines.push('', `Method: [docs/brier-method.md](../blob/${{ github.head_ref }}/docs/brier-method.md). Counter-eval slot open if you disagree.`);
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: lines.join('\n'),
+            });

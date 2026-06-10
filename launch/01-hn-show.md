@@ -12,7 +12,9 @@ In March 2026 Sahil Lavingia tweeted 9 Claude Code skills and hit 4.8k stars in 
 
 The market has skills. What it doesn't have is an honest answer to "does this skill actually help, or am I cargo-culting?" My friends keep installing skills on faith and then wondering why their Claude Code session feels different on Tuesday than Monday.
 
-I built a third-party Brier-audited directory of CLAUDE.md and skills/*.md files. Every entry comes with:
+I built a third-party Brier-audited directory of CLAUDE.md and skills/*.md files. Tonight's first audit pass surfaced something I didn't expect: one of Sahil's own 10 skills — `/grow-sustainably` — scored **harmful** on our frozen 5-task v1.0 eval set. Brier 0.35 vs no-skill baseline 0.25, on `claude-haiku-4-5`, reproducible from one command. Six of his other nine skills audited as helpful or neutral, but that specific one made Haiku worse on our tasks than just letting it answer with no skill at all. The author counter-eval slot is open — I'm not claiming the v1.0 set is the last word, I'm claiming a third-party Brier-audited number exists for the first time.
+
+That's why a directory. Every entry comes with:
 
 - Source URL + exact commit hash
 - Frozen 5-task v1.0 eval set (will grow to 40)
