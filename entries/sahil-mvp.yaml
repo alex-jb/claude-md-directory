@@ -1,8 +1,18 @@
 slug: sahil-mvp
 name: Sahil /mvp
-source_url: https://github.com/slavingia/skills/blob/main/mvp.md
+source_url: https://github.com/slavingia/skills/blob/main/skills/mvp/SKILL.md
 source_commit: pending
 purpose: MVP scoping skill from Minimalist Entrepreneur book
 domain: spec
 type: skill_md
 author: slavingia
+audited_at: '2026-06-10'
+audited_with: claude-haiku-4-5
+eval_set_version: '1.0'
+win_rate_baseline: 0.5
+win_rate_with_skill: 0.8
+brier_score: 0.1
+brier_baseline: 0.45
+verdict: helpful
+notes: Brier 0.100 vs baseline 0.450; win-rate 80.0% vs 50.0%. 5 tasks, Haiku, frozen
+  v1.0 eval set.

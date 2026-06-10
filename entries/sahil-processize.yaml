@@ -9,3 +9,13 @@ type: skill_md
 author: slavingia
 author_note: One of 10 skills Sahil distilled from his book The Minimalist Entrepreneur.
   Viral on X March 2026 (459K views in 1 week).
+audited_at: '2026-06-10'
+audited_with: claude-haiku-4-5
+eval_set_version: '1.0'
+win_rate_baseline: 0.7
+win_rate_with_skill: 0.8
+brier_score: 0.1
+brier_baseline: 0.25
+verdict: helpful
+notes: Brier 0.100 vs baseline 0.250; win-rate 80.0% vs 70.0%. 5 tasks, Haiku, frozen
+  v1.0 eval set.

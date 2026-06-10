@@ -1,12 +1,25 @@
 slug: karpathy-claude-md
 name: Karpathy's CLAUDE.md (4 behavioral rules)
 source_url: https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md
-source_commit: pending  # update on first audit
-purpose: 4 rules — think before coding, simplicity, surgical changes, goal-driven — distilled from Karpathy's Jan 2026 X post
+source_commit: pending
+purpose: 4 rules — think before coding, simplicity, surgical changes, goal-driven
+  — distilled from Karpathy's Jan 2026 X post
 domain: write
 type: claude_md
 author: multica-ai
-author_note: |
-  Distilled the 4 rules Karpathy described as raising his Claude Code accuracy
+author_note: 'Distilled the 4 rules Karpathy described as raising his Claude Code
+  accuracy
+
   from 65% to 91%. N = 1 author claim, never independently scored.
-# Awaiting first audit run.
+
+  '
+audited_at: '2026-06-10'
+audited_with: claude-haiku-4-5
+eval_set_version: '1.0'
+win_rate_baseline: 0.7
+win_rate_with_skill: 0.8
+brier_score: 0.2
+brier_baseline: 0.25
+verdict: neutral
+notes: Brier 0.200 vs baseline 0.250; win-rate 80.0% vs 70.0%. 5 tasks, Haiku, frozen
+  v1.0 eval set.

@@ -129,8 +129,8 @@ def audit_entry(path: Path, client: Anthropic, dry_run: bool = False) -> dict:
         entry = yaml.safe_load(f)
 
     source_url = entry.get("source_url")
-    if not source_url or "pending" in str(entry.get("source_commit", "")):
-        print(f"  skip: source_url missing or source_commit pending — {path.name}")
+    if not source_url:
+        print(f"  skip: source_url missing — {path.name}")
         return entry
 
     print(f"\n=== auditing {entry.get('slug')} ===")
