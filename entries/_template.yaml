@@ -1,0 +1,33 @@
+# Skill entry template — claude-md.directory
+#
+# Copy to entries/<your-skill-slug>.yaml and edit the fields below.
+# Submit via PR. We run our standardized audit on merge.
+
+# Required fields
+slug: my-new-skill
+name: My New Skill
+source_url: https://github.com/example/my-repo/blob/main/.claude/skills/my-skill.md
+source_commit: abcdef0123456789  # exact commit hash, not "main"
+purpose: One sentence — what the skill makes Claude do or refuse to do
+domain: write|refactor|debug|review|spec|ship|explain|triage  # pick one
+type: claude_md|skill_md|prompt|other  # CLAUDE.md, skills/*.md, /commands/*.md, etc
+
+# Optional fields
+author: github_handle  # if you want attribution
+author_note: |
+  Why I built this skill. Two sentences max.
+
+# Audit fields (we fill these on merge — leave blank in your PR)
+# audited_at: 2026-06-10
+# audited_with: claude-haiku-4-5 + claude-sonnet-4-6
+# eval_set_version: 1.0
+# win_rate_baseline: 0.50         # no-skill control
+# win_rate_with_skill: 0.??
+# brier_score: 0.??
+# verdict: helpful|neutral|harmful
+# notes: Free-text from our audit run
+
+# Counter-eval (if you disagree with our verdict, submit a counter audit
+# and we publish both):
+# counter_eval_url:
+# counter_eval_verdict:
