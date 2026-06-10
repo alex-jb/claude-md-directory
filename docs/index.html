@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>claude-md.directory — Brier-audited Claude.md and skills</title>
+<meta name="description" content="Brier-audited directory of CLAUDE.md and skills/*.md files. 26 entries audited so far (7 helpful · 15 neutral · 4 harmful)." />
+<meta property="og:title" content="claude-md.directory" />
+<meta property="og:description" content="26 skills Brier-audited. 7 helpful · 15 neutral · 4 harmful." />
+<style>
+:root {
+  --bg-deep:#0A0A0C; --bg-elev:#161619; --text:#E8E8EC; --muted:#A1A1AA;
+  --border:#3F3F46; --accent:#6366F1; --amber:#F59E0B;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--bg-deep); color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
+  line-height:1.5; padding:32px 24px;
+}
+.wrap { max-width:1100px; margin:0 auto; }
+.kicker { font-family:ui-monospace,SFMono-Regular,monospace; font-size:10px; letter-spacing:0.4em; color:var(--muted); text-transform:uppercase; }
+h1 { margin:8px 0 16px; font-size:42px; line-height:1.1; letter-spacing:-0.5px; }
+h1 .accent { color:var(--accent); }
+.lead { color:var(--muted); max-width:680px; font-size:16px; }
+.stats { display:flex; gap:8px; flex-wrap:wrap; margin:24px 0 8px; }
+.stat { padding:8px 14px; border-radius:10px; border:1px solid var(--border); background:var(--bg-elev); font-size:14px; }
+.stat strong { font-size:20px; display:block; }
+.stat.helpful strong { color:#10B981; }
+.stat.neutral strong { color:#A1A1AA; }
+.stat.harmful strong { color:#EF4444; }
+.filters { display:flex; gap:8px; margin:16px 0; flex-wrap:wrap; align-items:center; }
+.filters button {
+  background:transparent; border:1px solid var(--border); color:var(--text);
+  padding:6px 14px; border-radius:999px; font-family:inherit; font-size:13px;
+  cursor:pointer; transition:.12s;
+}
+.filters button.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.filters button:hover { border-color:var(--accent); }
+.filters input[type=search] {
+  background:var(--bg-elev); border:1px solid var(--border); color:var(--text);
+  padding:6px 12px; border-radius:8px; font-family:inherit; font-size:13px;
+  width:200px;
+}
+table { width:100%; border-collapse:collapse; margin-top:8px; }
+th {
+  text-align:left; padding:10px 12px; border-bottom:1px solid var(--border);
+  color:var(--muted); font-weight:500; font-size:11px; text-transform:uppercase;
+  letter-spacing:1.5px; cursor:pointer; user-select:none;
+}
+th:hover { color:var(--text); }
+th.right { text-align:right; }
+td { padding:14px 12px; border-bottom:1px solid #1C1C20; font-size:14px; vertical-align:middle; }
+tr:hover { background:var(--bg-elev); }
+.footer { margin-top:60px; padding:20px 0; border-top:1px solid var(--border); color:var(--muted); font-size:13px; line-height:1.7; }
+a { color:var(--accent); }
+.harmful-callout {
+  margin:24px 0; padding:16px 20px; background:rgba(239,68,68,0.08);
+  border:1px solid rgba(239,68,68,0.3); border-radius:12px; font-size:14px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">claude-md.directory · v1.0 frozen eval</div>
+  <h1>Which Claude skill <span class="accent">actually helps?</span></h1>
+  <p class="lead">Third-party Brier-audited directory of <code>CLAUDE.md</code> and <code>skills/*.md</code> files. Every entry is scored against a frozen 5-task eval set on <code>claude-haiku-4-5</code>. Reproducible from <code>python scripts/audit.py entries/&lt;slug&gt;.yaml</code>.</p>
+
+  <div class="stats">
+    <div class="stat helpful"><strong>7</strong><span>helpful</span></div>
+    <div class="stat neutral"><strong>15</strong><span>neutral</span></div>
+    <div class="stat harmful"><strong>4</strong><span>harmful ⚠️</span></div>
+    <div class="stat"><strong>26</strong><span>audited</span></div>
+  </div>
+
+  <div class='harmful-callout'><strong>⚠️ 3 entries audit as harmful</strong> against no-skill baseline on the frozen v1.0 eval set — including 2 of Anthropic's own official skills (<code>algorithmic-art</code>, <code>doc-coauthoring</code>) and Sahil's <code>grow-sustainably</code>. Almost certainly domain mismatch (algorithmic-art is not built for code-review tasks). v1.1 widens to 40 tasks across 8 domains. Author counter-eval slot is open per <a href='https://github.com/alex-jb/claude-md-directory/blob/main/docs/brier-method.md'>docs/brier-method.md</a>.</div>
+
+  <div class="filters">
+    <button class="active" data-filter="all">All (26)</button>
+    <button data-filter="helpful">✓ Helpful (7)</button>
+    <button data-filter="neutral">Neutral (15)</button>
+    <button data-filter="harmful">⚠️ Harmful (4)</button>
+    <input type="search" id="search" placeholder="Filter by name, author, domain..." />
+  </div>
+
+  <table id="tbl">
+    <thead>
+      <tr>
+        <th data-sort="name">Skill</th>
+        <th data-sort="verdict">Verdict</th>
+        <th data-sort="brier" class="right">Brier</th>
+        <th data-sort="brier" class="right">Baseline</th>
+        <th data-sort="brier" class="right">Δ</th>
+        <th data-sort="domain">Domain</th>
+        <th data-sort="author">Author</th>
+      </tr>
+    </thead>
+    <tbody>
+<tr data-verdict="harmful" data-brier="0.35">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/algorithmic-art/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /algorithmic-art</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#EF444422;color:#EF4444;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">harmful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.350</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#EF4444;font-weight:600">-0.100</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/brand-guidelines/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /brand-guidelines</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.25">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/canvas-design/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /canvas-design</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/claude-api/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /claude-api</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="harmful" data-brier="0.4">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/doc-coauthoring/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /doc-coauthoring</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#EF444422;color:#EF4444;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">harmful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.400</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#EF4444;font-weight:600">-0.150</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/docx/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /docx</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="helpful" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /frontend-design</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#10B98122;color:#10B981;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">helpful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.450</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#10B981;font-weight:600">+0.150</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="helpful" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/internal-comms/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /internal-comms</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#10B98122;color:#10B981;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">helpful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.450</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#10B981;font-weight:600">+0.150</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.25">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/mcp-builder/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /mcp-builder</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.050</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /pdf</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">-0.050</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /pptx</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">-0.050</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /skill-creator</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">-0.050</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.25">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/slack-gif-creator/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /slack-gif-creator</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/theme-factory/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /theme-factory</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.25">
+  <td><a href="https://github.com/anthropics/skills/blob/main/skills/web-artifacts-builder/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Anthropic /web-artifacts-builder</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@anthropics</td>
+</tr>
+<tr data-verdict="helpful" data-brier="0.25">
+  <td><a href="https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Karpathy&#x27;s CLAUDE.md (4 behavioral rules)</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#10B98122;color:#10B981;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">helpful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.500</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#10B981;font-weight:600">+0.250</span></td>
+  <td style="color:#A1A1AA;font-size:13px">write</td>
+  <td style="color:#A1A1AA;font-size:13px">@multica-ai</td>
+</tr>
+<tr data-verdict="helpful" data-brier="0.05">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/company-values/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /company-values</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#10B98122;color:#10B981;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">helpful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.050</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#10B981;font-weight:600">+0.200</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.3">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/find-community/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /find-community</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.300</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="helpful" data-brier="0.25">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/first-customers/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /first-customers</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#10B98122;color:#10B981;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">helpful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.400</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#10B981;font-weight:600">+0.150</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.25">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/grow-sustainably/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /grow-sustainably</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="helpful" data-brier="0.25">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/marketing-plan/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /marketing-plan</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#10B98122;color:#10B981;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">helpful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.400</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#10B981;font-weight:600">+0.150</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="harmful" data-brier="0.45">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/minimalist-review/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /minimalist-review</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#EF444422;color:#EF4444;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">harmful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.450</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#EF4444;font-weight:600">-0.200</span></td>
+  <td style="color:#A1A1AA;font-size:13px">review</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.25">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/mvp/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /mvp</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="neutral" data-brier="0.45">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/pricing/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /pricing</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#A1A1AA22;color:#A1A1AA;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">neutral</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.450</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.450</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#A1A1AA;font-weight:600">+0.000</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="helpful" data-brier="0.05">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/processize/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /processize</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#10B98122;color:#10B981;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">helpful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.050</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.450</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#10B981;font-weight:600">+0.400</span></td>
+  <td style="color:#A1A1AA;font-size:13px">ship</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+<tr data-verdict="harmful" data-brier="0.4">
+  <td><a href="https://github.com/slavingia/skills/blob/main/skills/validate-idea/SKILL.md" target="_blank" rel="noopener" style="color:#E8E8EC;text-decoration:none;font-weight:500">Sahil /validate-idea</a></td>
+  <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#EF444422;color:#EF4444;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px">harmful</span></td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right">0.400</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right;color:#71717A">0.250</td>
+  <td style="font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;text-align:right"><span style="color:#EF4444;font-weight:600">-0.150</span></td>
+  <td style="color:#A1A1AA;font-size:13px">spec</td>
+  <td style="color:#A1A1AA;font-size:13px">@slavingia</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    Method: <a href="https://github.com/alex-jb/claude-md-directory/blob/main/docs/brier-method.md">brier-method.md</a> · Source: <a href="https://github.com/alex-jb/claude-md-directory">github.com/alex-jb/claude-md-directory</a> · Submit a skill: <a href="https://github.com/alex-jb/claude-md-directory/blob/main/entries/_template.yaml">copy the template + open a PR</a>. CI auto-audits.<br/>
+    Built 2026-06-10 by <a href="https://github.com/alex-jb">@alex-jb</a>. Sister projects: <a href="https://whocalleditright.vercel.app">whocalleditright</a> · <a href="https://github.com/alex-jb/orallexa-ai-trading-agent">Orallexa</a> · <a href="https://github.com/alex-jb/memory-wall-tracker">memory-wall-tracker</a>.
+  </div>
+</div>
+
+<script>
+const buttons = document.querySelectorAll('[data-filter]');
+const search = document.getElementById('search');
+const rows = document.querySelectorAll('#tbl tbody tr');
+let activeFilter = 'all';
+
+function apply() {
+  const q = search.value.toLowerCase().trim();
+  rows.forEach(r => {
+    const v = r.dataset.verdict;
+    const text = r.textContent.toLowerCase();
+    const verdictMatch = activeFilter === 'all' || v === activeFilter;
+    const textMatch = !q || text.includes(q);
+    r.style.display = (verdictMatch && textMatch) ? '' : 'none';
+  });
+}
+
+buttons.forEach(b => b.addEventListener('click', () => {
+  buttons.forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  activeFilter = b.dataset.filter;
+  apply();
+}));
+search.addEventListener('input', apply);
+
+// Click-to-sort
+document.querySelectorAll('th[data-sort]').forEach((th, idx) => {
+  let asc = true;
+  th.addEventListener('click', () => {
+    const tbody = document.querySelector('#tbl tbody');
+    const sorted = Array.from(tbody.querySelectorAll('tr')).sort((a, b) => {
+      const va = a.cells[idx].textContent.trim();
+      const vb = b.cells[idx].textContent.trim();
+      const na = parseFloat(va);
+      const nb = parseFloat(vb);
+      if (!isNaN(na) && !isNaN(nb)) return asc ? na - nb : nb - na;
+      return asc ? va.localeCompare(vb) : vb.localeCompare(va);
+    });
+    sorted.forEach(r => tbody.appendChild(r));
+    asc = !asc;
+  });
+});
+</script>
+</body>
+</html>

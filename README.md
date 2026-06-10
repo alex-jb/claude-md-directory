@@ -1,6 +1,6 @@
 # claude-md.directory
 
-**English** | [中文](README.zh-CN.md)
+**English** | [中文](README.zh-CN.md) · **Live: [alex-jb.github.io/claude-md-directory](https://alex-jb.github.io/claude-md-directory/)**
 
 > **Brier-audited directory of 1000+ `CLAUDE.md` and `skills/*.md` files — every entry comes with a "does this skill actually help?" score, scored independently against a standardized eval harness.**
 
