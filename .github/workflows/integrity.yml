@@ -1,0 +1,39 @@
+name: integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  readme-matches-entries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install PyYAML
+
+      - name: README is regenerated from entries/
+        # If anyone hand-edits the First audit results section to
+        # contradict the YAML truth (the 2026-06-11 Fable 5 finding),
+        # this job fails the PR and points them at the regen script.
+        run: |
+          python3 scripts/regen_readme.py --check || {
+            echo "::error::README results table is out of date with entries/*.yaml."
+            echo "::error::Run: python3 scripts/regen_readme.py"
+            exit 1
+          }
+
+      - name: All entries have a source_commit (not "pending")
+        # Once pin_commits.py has been run, this guards against new
+        # entries landing without a frozen commit hash.
+        continue-on-error: true   # informational until first full pin pass
+        run: |
+          python3 scripts/pin_commits.py --check
