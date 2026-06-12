@@ -4,6 +4,10 @@
 
 > **Brier-audited directory of 1000+ `CLAUDE.md` and `skills/*.md` files — every entry comes with a "does this skill actually help?" score, scored independently against a standardized eval harness.**
 
+> **"For writing, you can imagine having a council of LLM judges and getting something reasonable. Almost everything can be made verifiable to some extent."** — Andrej Karpathy on agentic engineering, June 2026.
+>
+> This directory is that pattern applied to skills themselves: a council of eval tasks judges every published `skills/*.md` against a no-skill baseline. The audit is public, the eval set is frozen, the verdict YAML is the source of truth (the README table is auto-generated from it via `scripts/regen_readme.py`). When a skill earns "harmful" against a domain-matched eval, the author gets a counter-eval slot. We are the auditor *and* the audited.
+
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Entries](https://img.shields.io/badge/entries-26%20audited-blue.svg)](entries/)
 [![Eval set](https://img.shields.io/badge/eval%20set-v1.0%20frozen-orange.svg)](scripts/eval-set-v1.yaml)
