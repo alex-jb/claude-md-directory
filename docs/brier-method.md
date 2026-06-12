@@ -2,6 +2,21 @@
 
 This document specifies exactly how every entry in `entries/*.yaml` gets its `verdict`, `brier_score`, and `win_rate_*` numbers. The whole method is open and reproducible from one command.
 
+## 🔴 Metric naming honesty note (added 2026-06-12)
+
+The `brier_score` field in `entries/*.yaml` is computed as `mean((1 - task_score)^2)` where `task_score ∈ {0, 1}` for binary tasks (see `scripts/audit.py:brier`). **This is not a probabilistic Brier score in the textbook sense** — there is no forecast probability anywhere in the pipeline, only a transformed-win-rate squared error against the perfect score of 1.0.
+
+We keep the field name `brier_score` for backward compatibility with downstream consumers, but the truthful description is: **transformed win-rate squared error vs. the perfect skill that gets every task right**. Calling it a Brier score is a vestigial name that this document corrects.
+
+What that means for you:
+
+- Lower is still better. `< 0.25` is still better than coin-flip on this metric.
+- Verdicts (`helpful` / `neutral` / `harmful`) are still delta-vs-baseline, which is the comparison that matters.
+- Anyone re-doing this with a probabilistic forecast (e.g., Haiku rated `[0, 1]` confidence per task before the answer) would get a true Brier. That's on the roadmap as part of the v1.1 eval-set widening, which also introduces k≥10 repetitions per condition with bootstrap CI gating.
+- N=5 binary tasks, single Haiku pass — directional verdicts only. Anyone treating these numbers as statistically significant is doing it wrong; the project goal is the dispute-protocol framework, not the v1.0 numbers in isolation.
+
+For the original motivation (why this kind of measurement matters at all), continue below.
+
 ## Why Brier and not "accuracy"
 
 Accuracy is a single threshold. If a skill is right on 4/5 tasks, that's "80%" — but says nothing about how *confident* the model was on the one it got wrong, and nothing about whether the skill *hurt* on tasks it shouldn't have touched. Brier is the standard probabilistic-forecast calibration metric (Brier 1950, Tetlock 2005) and gives us three things accuracy cannot:
