@@ -8,6 +8,12 @@
 >
 > This directory is that pattern applied to skills themselves: a council of eval tasks judges every published `skills/*.md` against a no-skill baseline. The audit is public, the eval set is frozen, the verdict YAML is the source of truth (the README table is auto-generated from it via `scripts/regen_readme.py`). When a skill earns "harmful" against a domain-matched eval, the author gets a counter-eval slot. We are the auditor *and* the audited.
 
+## The 669K-skill problem (June 2026)
+
+On 2026-06-09 Anthropic made Skills an open standard. On 2026-06-05 Vercel's [skills.sh](https://skills.sh) registry opened its API; it now hosts **669,670 published skills**. Snyk runs security audits on every install. **Nobody runs helpfulness audits.** The result: hundreds of thousands of skills shipping advice to millions of agent runs with no public ledger of which skills have been right against a standard eval set.
+
+This directory exists to be that ledger. The eval set is small (v1.0 is 5 tasks, intentionally under-powered) and the metric is honest (`mean((1 - score)^2)` against the perfect skill, not a probabilistic Brier — see [docs/brier-method.md](docs/brier-method.md)). The point isn't the v1.0 number for any one skill. The point is the dispute protocol and the auto-regenerated table that can't drift from the YAML truth.
+
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Entries](https://img.shields.io/badge/entries-26%20audited-blue.svg)](entries/)
 [![Eval set](https://img.shields.io/badge/eval%20set-v1.0%20frozen-orange.svg)](scripts/eval-set-v1.yaml)
